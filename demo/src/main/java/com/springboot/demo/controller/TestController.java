@@ -9,4 +9,9 @@ public class TestController {
     public String testMapping(){
         return "Hellooooooo";
     }
+
+    @GetMapping("/devTools")
+    public String devToolsTest(){
+        return "devTools is a good man :)";
+    }
 }

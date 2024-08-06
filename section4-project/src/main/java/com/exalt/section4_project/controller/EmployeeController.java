@@ -2,6 +2,7 @@ package com.exalt.section4_project.controller;
 
 import com.exalt.section4_project.dao.EmployeeDAO;
 import com.exalt.section4_project.entity.Employee;
+import com.exalt.section4_project.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,16 +16,16 @@ import java.util.List;
 @RequestMapping("/api/employees")
 public class EmployeeController {
 
-    private EmployeeDAO employeeDAO;
-
-    public EmployeeController(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
-    }
+    private EmployeeService employeeService;
 
     @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
 
     @GetMapping("")
     public List<Employee> getAllEmployees(){
-        return employeeDAO.findALL();
+        return employeeService.findAll();
     }
 }

@@ -23,27 +23,38 @@ public class Section3Application {
             readStudent(studentDAO, id);
             readAllStudents(studentDAO);
             findStudentsByLastName(studentDAO);
+            updateStudent(studentDAO);
         };
+    }
+
+    private void updateStudent(StudentDAO studentDAO) {
+        int id = 1;
+        System.out.println("Getting student with id = " + id);
+        Student student = studentDAO.findById(id);
+        System.out.println("Student: " + student);
+        student.setLastName("Muneer");
+        studentDAO.update(student);
+        System.out.println("Updated student: " + student);
     }
 
     private void findStudentsByLastName(StudentDAO studentDAO) {
         System.out.println("find student with last name = `Katout`");
         List<Student> students = studentDAO.findByLastName("Katout");
         System.out.println("These students where found:");
-        for(Student student : students)
+        for (Student student : students)
             System.out.println(student);
     }
 
     private void readAllStudents(StudentDAO studentDAO) {
         List<Student> allStudents = studentDAO.findAll();
         System.out.println("These students where found:");
-        for(Student student : allStudents)
+        for (Student student : allStudents)
             System.out.println(student);
     }
 
     private void readStudent(StudentDAO studentDAO, Integer id) {
-       Student myStudent = studentDAO.findById(id);
-        System.out.println("Found the student: "+myStudent);
+        Student myStudent = studentDAO.findById(id);
+        System.out.println("Found the student: " + myStudent);
     }
 
     private Integer createStudent(StudentDAO studentDAO) {

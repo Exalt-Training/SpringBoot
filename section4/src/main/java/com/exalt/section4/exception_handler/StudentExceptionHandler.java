@@ -1,41 +1,16 @@
-package com.exalt.section4.controller;
+package com.exalt.section4.exception_handler;
 
-import com.exalt.section4.entity.Student;
 import com.exalt.section4.error_response.StudentErrorResponse;
 import com.exalt.section4.exception.StudentNotFoundException;
-import jakarta.annotation.PostConstruct;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.util.ArrayList;
-import java.util.List;
+@ControllerAdvice
+public class StudentExceptionHandler {
 
-@RestController
-@RequestMapping("/api")
-public class StudentRestController {
-    private List<Student> allStudent;
-    @PostConstruct
-    public void loadData(){
-        allStudent = new ArrayList<>();
-        allStudent.add(new Student("Riham", "Katout"));
-        allStudent.add(new Student("Siwar", "Katout"));
-        allStudent.add(new Student("Ahmad", "Muneer"));
-    }
-    @GetMapping("/students")
-    public List<Student> getStudents(){
-        return allStudent;
-    }
 
-    @GetMapping("/students/{studentId}")
-    public Student getStudentById(@PathVariable int studentId){
-
-        if(studentId>=allStudent.size() || studentId<0)
-            throw new StudentNotFoundException("Student id not found: "+studentId);
-        return allStudent.get(studentId);
-    }
-
-    // remove these exception handlers if you want to use @ControllerAdvice
     @ExceptionHandler
     public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException e){
 
@@ -47,7 +22,6 @@ public class StudentRestController {
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
-    // to catch any type exception
     @ExceptionHandler
     public ResponseEntity<StudentErrorResponse> handleException(Exception e){
 

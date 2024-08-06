@@ -9,3 +9,5 @@ CREATE TABLE `employee`(
     `email` VARCHAR(45) DEFAULT NULL,
     PRIMARY KEY(`id`)
 );
+
+INSERT INTO `employee` (`first_name`, `last_name`, `email`) VALUES ("riham", "katout", "test1@gmail.com");

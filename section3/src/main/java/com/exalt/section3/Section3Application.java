@@ -17,7 +17,7 @@ public class Section3Application {
     @Bean
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {
-//            createStudent(studentDAO);
+            createStudent(studentDAO);
         };
     }
 

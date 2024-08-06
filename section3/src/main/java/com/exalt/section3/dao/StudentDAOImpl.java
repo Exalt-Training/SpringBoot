@@ -9,13 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public class StudentDAOImpl implements StudentDAO{
+public class StudentDAOImpl implements StudentDAO {
 
     private EntityManager entityManager;
 
-    public StudentDAOImpl(EntityManager entityManager){
+    public StudentDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+
     @Override
     @Transactional
     public void save(Student student) {
@@ -44,5 +45,18 @@ public class StudentDAOImpl implements StudentDAO{
     @Transactional
     public void update(Student student) {
         entityManager.merge(student);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Integer id) {
+        Student student = findById(id);
+        entityManager.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll() {
+        return entityManager.createQuery("delete from Student").executeUpdate();
     }
 }

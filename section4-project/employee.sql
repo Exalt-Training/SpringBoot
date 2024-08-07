@@ -18,12 +18,14 @@ INSERT INTO `employee` (`first_name`, `last_name`, `email`) VALUES ("muneer", "k
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`(
 	username varchar(50) NOT NULL, 
-    password varchar(50) NOT NULL, 
-    enabled TINYINT NOT NULL, 
+    password varchar(68) NOT NULL, 
+    enabled TINYINT(1) NOT NULL, 
     PRIMARY KEY(`username`)
 ) ENGINE=InnoDB DEFAULT charset=latin1;
 
-INSERT INTO `users` VALUES ('riham', '{noop}1218', 1), ('ahmad', '{noop}2010', 1), ('siwar', '{noop}2021', 1);
+INSERT INTO `users` VALUES	('riham', '{bcrypt}$2a$12$/CoFamjSCSqpfSPx74ev0.nqd5Bl0jFHdEIzDPjtYe1e.C1UT949a', 1), 
+							('ahmad', '{bcrypt}$2a$12$DR5lNOiyW4q/0O1DWjnwBu28GVgLQRa9k1l.LyRRnZRk81LfEhjZq', 1), 
+                            ('siwar', '{bcrypt}$2a$12$J3LtEGtQMG1sgJhXHN8ROOAgdIdNV/Jics6TEfmAw31h5Skuh5j1e', 1);
 
 DROP TABLE IF EXISTS `authorities`;
 CREATE TABLE `authorities`(

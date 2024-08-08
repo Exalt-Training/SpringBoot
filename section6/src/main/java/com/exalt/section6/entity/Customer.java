@@ -1,5 +1,6 @@
 package com.exalt.section6.entity;
 
+import com.exalt.section6.validation.CourseCode;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -15,4 +16,6 @@ public class Customer {
     @Size(min=1, message="is required")
     private String lastName;
 
+    @CourseCode
+    private String courseCode;
 }
